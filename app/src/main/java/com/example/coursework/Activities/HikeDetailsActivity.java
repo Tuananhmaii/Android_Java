@@ -2,7 +2,6 @@ package com.example.coursework.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,9 +32,9 @@ public class HikeDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailshike);
+        setContentView(R.layout.hike_details);
 
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite_example_db")
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
                 .allowMainThreadQueries() // For simplicity, don't use this in production
                 .build();
 
@@ -51,10 +50,6 @@ public class HikeDetailsActivity extends AppCompatActivity {
         String hike_description = intent.getStringExtra("hike_description");
         int hike_length = intent.getIntExtra("hike_length", 0); // Default value if not provided
         int hike_teamSize = intent.getIntExtra("hike_teamSize", 0); // Default value if not provided
-
-        Log.d("hike_length", "Hike Weather: " + hike_length);
-        Log.d("hike_teamSize", "hike_teamSize: " + hike_teamSize);
-        Log.d("hike_difficulty", "hike_difficulty: " + hike_difficulty);
 
         // Capture the layout's TextView and set the string as its text
         nameEditText = findViewById(R.id.nameText);

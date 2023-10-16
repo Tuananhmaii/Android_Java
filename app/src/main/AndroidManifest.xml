@@ -22,10 +22,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.AddHikeActivity"
+            android:name=".Activities.HikeAddActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.HikeDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ObservationAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ObservationDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ObservationActivity"
             android:exported="false" />
     </application>
 

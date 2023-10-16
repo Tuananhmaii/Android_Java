@@ -3,6 +3,7 @@ import java.util.List;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 
@@ -42,6 +43,15 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
                 }
             }
         });
+
+        holder.observation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onObservationClick(position);
+                }
+            }
+        });
     }
 
     public void setHikes(List<Hike> hikes) {
@@ -55,17 +65,20 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
 
     public static class HikeViewHolder extends RecyclerView.ViewHolder {
         TextView hikeName, hikeLocation, hikeDate;
+        Button observation;
 
         public HikeViewHolder(@NonNull View itemView) {
             super(itemView);
             hikeName = itemView.findViewById(R.id.hikeName);
             hikeLocation = itemView.findViewById(R.id.hikeLocation);
             hikeDate = itemView.findViewById(R.id.hikeDate);
+            observation = itemView.findViewById(R.id.buttonObservation);
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+        void onObservationClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

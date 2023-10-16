@@ -24,4 +24,7 @@ public interface HikeDao {
 
     @Query("SELECT * FROM hikes")
     List<Hike> getAllHikes();
+
+    @Query("SELECT * FROM hikes WHERE hike_id=:id")
+    Hike getHike(long id);
 }

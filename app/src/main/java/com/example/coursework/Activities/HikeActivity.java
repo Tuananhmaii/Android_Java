@@ -22,8 +22,8 @@ public class HikeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hike);
-        AppDatabase appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite_example_db")
+        setContentView(R.layout.hike);
+        AppDatabase appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
                 .allowMainThreadQueries() // For simplicity, don't use this in production
                 .build();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -49,6 +49,13 @@ public class HikeActivity extends AppCompatActivity {
                 intent.putExtra("hike_description", hike.description);
                 startActivity(intent);
             }
+
+            public void onObservationClick(int position) {
+                Hike hike = hikeList.get(position);
+                Intent intent = new Intent(HikeActivity.this, ObservationActivity.class);
+                intent.putExtra("hike_id", Long.toString(hike.hike_id));
+                startActivity(intent);
+            }
         });
         recyclerView.setAdapter(adapter);
 
@@ -56,7 +63,7 @@ public class HikeActivity extends AppCompatActivity {
         addHikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddHikeActivity.class);
+                Intent intent = new Intent(view.getContext(), HikeAddActivity.class);
                 startActivity(intent);
             }
         });

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +18,7 @@ import com.example.coursework.Database.AppDatabase;
 import com.example.coursework.Models.Hike;
 import com.example.coursework.R;
 
-public class AddHikeActivity extends AppCompatActivity {
+public class HikeAddActivity extends AppCompatActivity {
     private AppDatabase appDatabase;
 
     EditText nameEditText;
@@ -35,7 +34,7 @@ public class AddHikeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addhike);
+        setContentView(R.layout.hike_add);
 
         // Initialize spinners
         parkSpinner = findViewById(R.id.parkSpinner);
@@ -57,7 +56,7 @@ public class AddHikeActivity extends AppCompatActivity {
         weatherEditText = findViewById(R.id.weatherText);
         descriptionEditText = findViewById(R.id.descriptionText);
 
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite_example_db")
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
                 .allowMainThreadQueries() // For simplicity, don't use this in production
                 .build();
 
@@ -76,7 +75,7 @@ public class AddHikeActivity extends AppCompatActivity {
 
                 if (name.isEmpty() || location.isEmpty() || date.isEmpty() || length.isEmpty() ||
                         team.isEmpty() || weather.isEmpty()) {
-                    Toast.makeText(AddHikeActivity.this, "Please enter all required information!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HikeAddActivity.this, "Please enter all required information!", Toast.LENGTH_LONG).show();
                 } else {
                     Hike hike = new Hike();
                     hike.name = name;
@@ -99,7 +98,7 @@ public class AddHikeActivity extends AppCompatActivity {
                             "Weather: " + weather + "\n" +
                             "Description: " + description + "\n";
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AddHikeActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HikeAddActivity.this);
                     builder.setTitle("Add new hike")
                             .setMessage(message)
                             .setPositiveButton("Save", new DialogInterface.OnClickListener() {
@@ -107,7 +106,7 @@ public class AddHikeActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     appDatabase.hikeDao().insertHike(hike);
                                     dialog.dismiss();
-                                    Intent intent = new Intent(AddHikeActivity.this, HikeActivity.class);
+                                    Intent intent = new Intent(HikeAddActivity.this, HikeActivity.class);
                                     startActivity(intent);
                                 }
                             })
