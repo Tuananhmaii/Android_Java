@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import androidx.room.Room;
 
 import com.example.coursework.Adapter.ObservationAdapter;
 import com.example.coursework.Database.AppDatabase;
+import com.example.coursework.Models.Hike;
 import com.example.coursework.Models.Observation;
 import com.example.coursework.R;
 
@@ -29,8 +32,11 @@ public class ObservationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Long Id = Long.parseLong(intent.getStringExtra("hike_id"));
-
         List<Observation> observationList = appDatabase.observationDao().getAllObservations(Id);
+
+        TextView hikeName = findViewById(R.id.hikeName);
+        Hike hike = appDatabase.hikeDao().getHike(Id);
+        hikeName.setText(hike.name);
 
         ObservationAdapter adapter = new ObservationAdapter(observationList);
         adapter.setOnItemClickListener(new ObservationAdapter.OnItemClickListener() {
@@ -55,6 +61,15 @@ public class ObservationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ObservationActivity.this, ObservationAddActivity.class);
                 intent.putExtra("hike_id", Long.toString(Id));
+                startActivity(intent);
+            }
+        });
+
+        Button backButton = findViewById(R.id.BackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ObservationActivity.this, HikeActivity.class);
                 startActivity(intent);
             }
         });

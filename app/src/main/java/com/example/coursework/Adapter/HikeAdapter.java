@@ -84,4 +84,9 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+    public void filterList(List<Hike> hikeList) {
+        hikes = hikeList;
+        notifyDataSetChanged();
+    }
 }

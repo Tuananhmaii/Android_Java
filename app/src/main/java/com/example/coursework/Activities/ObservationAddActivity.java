@@ -16,6 +16,10 @@ import com.example.coursework.Database.AppDatabase;
 import com.example.coursework.Models.Observation;
 import com.example.coursework.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class ObservationAddActivity extends AppCompatActivity {
     private AppDatabase appDatabase;
 
@@ -37,6 +41,12 @@ public class ObservationAddActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameText);
         timeEditText = findViewById(R.id.timeText);
         descriptionEditText = findViewById(R.id.descriptionText);
+
+        Date currentDate = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String formattedDate = dateFormat.format(currentDate);
+        timeEditText.setText(formattedDate);
 
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
@@ -64,11 +74,10 @@ public class ObservationAddActivity extends AppCompatActivity {
 
                     String message = "Name: " + name + "\n" +
                             "Time: " + time + "\n" +
-                            "Description: " + description + "\n" +
-                            "hikeID: " + Id + "\n";
+                            "Description: " + description + "\n";
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(ObservationAddActivity.this);
-                    builder.setTitle("Add new hike")
+                    builder.setTitle("Add new observation")
                             .setMessage(message)
                             .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                                 @Override

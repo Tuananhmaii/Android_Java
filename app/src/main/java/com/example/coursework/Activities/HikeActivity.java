@@ -7,14 +7,18 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.coursework.Adapter.HikeAdapter;
 import com.example.coursework.Database.AppDatabase;
 import com.example.coursework.Models.Hike;
 import com.example.coursework.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HikeActivity extends AppCompatActivity {
@@ -65,6 +69,32 @@ public class HikeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), HikeAddActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        EditText search = findViewById(R.id.search);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = s.toString();
+                List<Hike> filteredList = new ArrayList<>();;
+
+                for (Hike item : hikeList) {
+                    if (item.name.toLowerCase().contains(text.toLowerCase())) {
+                        filteredList.add(item);
+                    }
+                }
+                adapter.filterList(filteredList);
             }
         });
     }
