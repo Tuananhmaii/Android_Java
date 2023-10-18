@@ -49,7 +49,7 @@ public class ObservationAddActivity extends AppCompatActivity {
         timeEditText.setText(formattedDate);
 
 
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite3_example_db")
                 .allowMainThreadQueries() // For simplicity, don't use this in production
                 .build();
 

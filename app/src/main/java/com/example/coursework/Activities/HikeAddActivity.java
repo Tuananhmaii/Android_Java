@@ -56,7 +56,7 @@ public class HikeAddActivity extends AppCompatActivity {
         weatherEditText = findViewById(R.id.weatherText);
         descriptionEditText = findViewById(R.id.descriptionText);
 
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite3_example_db")
                 .allowMainThreadQueries() // For simplicity, don't use this in production
                 .build();
 

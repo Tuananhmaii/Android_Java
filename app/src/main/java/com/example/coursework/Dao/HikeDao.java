@@ -22,6 +22,9 @@ public interface HikeDao {
     @Query("DELETE FROM hikes WHERE hike_id=:id")
     void deleteHike (long id);
 
+    @Query("DELETE FROM hikes")
+    void deleteAllHike();
+
     @Query("SELECT * FROM hikes")
     List<Hike> getAllHikes();
 

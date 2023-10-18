@@ -24,7 +24,7 @@ public class ObservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation);
-        AppDatabase appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite2_example_db")
+        AppDatabase appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "sqlite3_example_db")
                 .allowMainThreadQueries() // For simplicity, don't use this in production
                 .build();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
