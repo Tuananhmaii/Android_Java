@@ -120,8 +120,13 @@ public class HikeActivity extends AppCompatActivity {
                 String text = s.toString();
                 List<Hike> filteredList = new ArrayList<>();;
 
+
+
                 for (Hike item : hikeList) {
-                    if (item.name.toLowerCase().contains(text.toLowerCase())) {
+                    if (item.name.toLowerCase().contains(text.toLowerCase()) ||
+                            item.location.toLowerCase().contains(text.toLowerCase()) ||
+                            String.valueOf(item.length).toLowerCase().contains(text.toLowerCase()) ||
+                            item.date.toLowerCase().contains(text.toLowerCase())) {
                         filteredList.add(item);
                     }
                 }

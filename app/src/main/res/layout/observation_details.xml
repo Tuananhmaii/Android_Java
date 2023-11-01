@@ -12,7 +12,7 @@
         android:layout_height="51dp"
         android:background="#FFFFFF"
         android:gravity="center"
-        android:text="Add Observation"
+        android:text="Update Observation"
         android:textSize="34sp"
         android:textStyle="bold"/>
 

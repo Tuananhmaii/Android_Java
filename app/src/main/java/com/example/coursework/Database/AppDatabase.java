@@ -17,6 +17,4 @@ import com.example.coursework.Models.Observation;
 public abstract class AppDatabase extends RoomDatabase {
     public abstract HikeDao hikeDao();
     public abstract ObservationDao observationDao();
-
-
 }

@@ -1,24 +1,49 @@
 package com.example.coursework.Activities;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.room.Room;
 
 import com.example.coursework.Database.AppDatabase;
 import com.example.coursework.Models.Hike;
 import com.example.coursework.R;
 
+import java.time.LocalDate;
+
 public class HikeAddActivity extends AppCompatActivity {
+    public static class DatePickerFragment extends DialogFragment implements
+            DatePickerDialog.OnDateSetListener {
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
+        {
+            LocalDate d = LocalDate.now();
+            int year = d.getYear();
+            int month = d.getMonthValue();
+            int day = d.getDayOfMonth();
+            return new DatePickerDialog(getActivity(), this, year, --month, day);}
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day){
+            LocalDate dob = LocalDate.of(year, ++month, day);
+            ((HikeAddActivity)getActivity()).updateDOB(dob);
+        }
+    }
     private AppDatabase appDatabase;
 
     EditText nameEditText;
@@ -30,6 +55,8 @@ public class HikeAddActivity extends AppCompatActivity {
     EditText descriptionEditText;
     Spinner parkSpinner;
     Spinner difficultySpinner;
+    Button chooseDateButton;
+    private EditText dateText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,5 +150,17 @@ public class HikeAddActivity extends AppCompatActivity {
                 }
             }
         });
+        chooseDateButton = findViewById(R.id.chooseDateButton);
+        chooseDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new HikeAddActivity.DatePickerFragment();
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+    }
+    public void updateDOB(LocalDate dob){
+        dateText = findViewById(R.id.dateText);
+        dateText.setText(dob.toString());
     }
 }
