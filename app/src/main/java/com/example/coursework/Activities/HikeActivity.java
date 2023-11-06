@@ -8,17 +8,18 @@ import androidx.room.Room;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.coursework.Adapter.HikeAdapter;
 import com.example.coursework.Database.AppDatabase;
 import com.example.coursework.Models.Hike;
 import com.example.coursework.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class HikeActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-        Button addHikeButton = findViewById(R.id.addHikeButton);
+        FloatingActionButton addHikeButton = findViewById(R.id.addHikeButton);
         addHikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +75,7 @@ public class HikeActivity extends AppCompatActivity {
             }
         });
 
-        Button deleteAllButton = findViewById(R.id.deleteAllButton);
+        FloatingActionButton deleteAllButton = findViewById(R.id.deleteAllButton);
         deleteAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

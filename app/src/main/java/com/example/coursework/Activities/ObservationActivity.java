@@ -17,6 +17,7 @@ import com.example.coursework.Database.AppDatabase;
 import com.example.coursework.Models.Hike;
 import com.example.coursework.Models.Observation;
 import com.example.coursework.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class ObservationActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-        Button addObservationButton = findViewById(R.id.addObservationButton);
+        FloatingActionButton addObservationButton = findViewById(R.id.addObservationButton);
         addObservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

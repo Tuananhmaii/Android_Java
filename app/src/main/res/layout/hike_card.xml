@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
+    app:cardCornerRadius="30dp"
     android:id="@+id/mainLayout">
 
     <LinearLayout
@@ -42,7 +47,7 @@
                 android:id="@+id/hikeDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="148dp"
+                android:layout_marginEnd="130dp"
                 android:text="120"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,10 +55,10 @@
 
             <Button
                 android:id="@+id/buttonObservation"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#A39687"
-                android:text="Observation"
+                android:drawableLeft="@drawable/baseline_collections_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.829"
                 app:layout_constraintStart_toEndOf="@+id/hikeDate"
